@@ -12,6 +12,7 @@
     <script>
       $(document).ready(function () {
         $("button").click(function () {
+          if($('input:radio[name=year]:checked').val()==='2'){
           $.ajax({
             url: `https://msubcdndwn.digitaluniversity.ac/resources/public/msub/HallTicket/SingleStudent/42/6/HT_B_E_BE_II_SSBE_II_${$('#txt_name').val()}.html`,
             success: function (result) {
@@ -22,6 +23,19 @@
               //   console.log(result);
             },
           });
+        }
+        else{
+          $.ajax({
+            url: `https://msubcdndwn.digitaluniversity.ac/resources/public/msub/HallTicket/SingleStudent/42/6/HT_B_E_BE_III_SSBE_III_${$('#txt_name').val()}.html`,
+            success: function (result) {
+               $("button").addClass("hide")
+               $("#txt_name").addClass("hide") 
+               $("input:radio[name=year]").addClass("hide") 
+              $("#parent").html(result);
+              //   console.log(result);
+            },
+          });
+        }  
         });
       });
     </script>
@@ -111,6 +125,8 @@
 
   <body>
     <div style="width: 700px">
+        <input type="radio" name="year" value="2">2nd Year</input>
+        <input type="radio" name="year" value="3">3rd Year</input> 
         <input type="text" class="form-control" id="txt_name" placeholder="Enter PRN number">
       <button class="btn btn-default" id="call">Get HallTicket</button>
       <div style="width: 800px" id="parent">    
