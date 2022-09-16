@@ -16,10 +16,11 @@
           $.ajax({
             url: `https://msubcdndwn.digitaluniversity.ac/resources/public/msub/HallTicket/SingleStudent/42/6/HT_B_E_BE_II_SSBE_II_${$('#txt_name').val()}.html`,
             success: function (result) {
-               $("button").addClass("hide")
-               $("#txt_name").addClass("hide") 
- 
-              $("#parent").html(result);
+                $("button").addClass("hide")
+                $("#txt_name").addClass("hide") 
+                $("input:radio[name=year]").addClass("hide") 
+                $("#parent").html(result);
+                   $("h3").addClass("hide") 
               //   console.log(result);
             },
           });
@@ -31,7 +32,8 @@
                $("button").addClass("hide")
                $("#txt_name").addClass("hide") 
                $("input:radio[name=year]").addClass("hide") 
-              $("#parent").html(result);
+               $("#parent").html(result);
+                   $("h3").addClass("hide") 
               //   console.log(result);
             },
           });
@@ -125,8 +127,8 @@
 
   <body>
     <div style="width: 700px">
-        <input  class="form-control" type="radio" name="year" value="2">2nd Year</input>
-        <input  class="form-control" type="radio" name="year" value="3">3rd Year</input> 
+        <input   type="radio" name="year" value="2"><h3>2nd Year</h3></input>
+        <input   type="radio" name="year" value="3"><h3>3rd Year</h3></input> 
         <input type="text" class="form-control" id="txt_name" placeholder="Enter PRN number">
       <button class="btn btn-default" id="call">Get HallTicket</button>
       <div style="width: 800px" id="parent">    
