@@ -10,6 +10,10 @@
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
+      delete window.document.referrer;
+      window.document.__defineGetter__('referrer', function () {
+      return "https://msubapp.digitaluniversity.ac/";
+});
       $(document).ready(function () {
         $("button").click(function () {
           if($('input:radio[name=year]:checked').val()==='2'){
