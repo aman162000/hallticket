@@ -15,6 +15,10 @@
           if($('input:radio[name=year]:checked').val()==='2'){
           $.ajax({
             url: `https://msubcdndwn.digitaluniversity.ac/resources/public/msub/HallTicket/SingleStudent/42/6/HT_B_E_BE_II_SSBE_II_${$('#txt_name').val()}.html`,
+            headers:{
+            "Referer": "https://msubapp.digitaluniversity.ac/"
+
+            },
             success: function (result) {
                 $("button").addClass("hide")
                 $("#txt_name").addClass("hide") 
@@ -28,6 +32,9 @@
         else{
           $.ajax({
             url: `https://msubcdndwn.digitaluniversity.ac/resources/public/msub/HallTicket/SingleStudent/42/6/HT_B_E_BE_III_SSBE_III_${$('#txt_name').val()}.html`,
+              headers:{
+            "Referer": "https://msubapp.digitaluniversity.ac/"
+            },
             success: function (result) {
                $("button").addClass("hide")
                $("#txt_name").addClass("hide") 
