@@ -14,43 +14,51 @@
       window.document.__defineGetter__('referrer', function () {
       return "https://msubapp.digitaluniversity.ac/";
 });
-      $(document).ready(function () {
-        $("button").click(function () {
-          if($('input:radio[name=year]:checked').val()==='2'){
-          $.ajax({
-            url: `https://msubcdndwn.digitaluniversity.ac/resources/public/msub/HallTicket/SingleStudent/42/6/HT_B_E_BE_II_SSBE_II_${$('#txt_name').val()}.html`,
-            headers:{
-            "Referer": "https://msubapp.digitaluniversity.ac/"
+$(document).ready(function () {
+  $("button").click(function () {
+    var selectedYear = $('input:radio[name=year]:checked').val();
 
-            },
-            success: function (result) {
-                $("button").addClass("hide")
-                $("#txt_name").addClass("hide") 
-                $("input:radio[name=year]").addClass("hide") 
-                $("#parent").html(result);
-                   $("h3").addClass("hide") 
-              //   console.log(result);
-            },
-          });
-        }
-        else{
-          $.ajax({
-            url: `https://msubcdndwn.digitaluniversity.ac/resources/public/msub/HallTicket/SingleStudent/42/6/HT_B_E_BE_III_SSBE_III_${$('#txt_name').val()}.html`,
-              headers:{
-            "Referer": "https://msubapp.digitaluniversity.ac/"
-            },
-            success: function (result) {
-               $("button").addClass("hide")
-               $("#txt_name").addClass("hide") 
-               $("input:radio[name=year]").addClass("hide") 
-               $("#parent").html(result);
-                   $("h3").addClass("hide") 
-              //   console.log(result);
-            },
-          });
-        }  
-        });
+    function performAjaxRequest(url) {
+      $.ajax({
+        url: url,
+        headers: {
+          "Referer": "https://msubapp.digitaluniversity.ac/"
+        },
+        success: function (result) {
+          $("button").addClass("hide");
+          $("#txt_name").addClass("hide");
+          $("input:radio[name=year]").addClass("hide");
+          $("#parent").html(result);
+          $("h3").addClass("hide");
+        },
       });
+    }
+
+    switch (selectedYear) {
+      case '1':
+      var url1 = `https://msubcdndwn.digitaluniversity.ac/resources/public/msub/HallTicket/SingleStudent/50/6/HT_B_E_BE_I_FSBE_I_${$('#txt_name').val()}.html`;
+        performAjaxRequest(url1);
+        break;
+      case '2':
+        var url2 = `https://msubcdndwn.digitaluniversity.ac/resources/public/msub/HallTicket/SingleStudent/50/6/HT_B_E_BE_II_FSBE_II_${$('#txt_name').val()}.html`;
+        performAjaxRequest(url2);
+        break;
+
+      case '3':
+      var url3 = `https://msubcdndwn.digitaluniversity.ac/resources/public/msub/HallTicket/SingleStudent/50/6/HT_B_E_BE_III_FSBE_III_${$('#txt_name').val()}.html`;
+        performAjaxRequest(url3);
+        break;
+      case '4':
+        var url4 = `https://msubcdndwn.digitaluniversity.ac/resources/public/msub/HallTicket/SingleStudent/50/6/HT_B_E_BE_IV_FSBE_IV_${$('#txt_name').val()}.html`;
+        performAjaxRequest(url4);
+        break;
+
+      default:
+        // Handle other cases or provide a default behavior
+        break;
+    }
+  });
+});
     </script>
     <title>Hall Ticket</title>
     <style>
@@ -138,9 +146,14 @@
 
   <body>
     <div style="width: 700px">
-        <input   type="radio" name="year" value="2"><h3>2nd Year</h3></input>
-        <input   type="radio" name="year" value="3"><h3>3rd Year</h3></input> 
-        <input type="text" class="form-control" id="txt_name" placeholder="Enter PRN number">
+      <div style="display: flex; justify-content: space-between; padding-inline: 10px;">
+
+        <input   type="radio" name="year" value="1"><h3>1st Year</h3></input>
+        <input   type="radio" name="year" value="2"><h3>2nd Year</h3></input> 
+        <input   type="radio" name="year" value="3"><h3>3rd Year</h3></input>
+        <input   type="radio" name="year" value="4"><h3>4th Year</h3></input> 
+      </div>
+      <input type="text" class="form-control" id="txt_name" placeholder="Enter PRN number">
       <button class="btn btn-default" id="call">Get HallTicket</button>
       <div style="width: 800px" id="parent">    
        
